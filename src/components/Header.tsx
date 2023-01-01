@@ -17,16 +17,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const pages = [
-	{ id: 1, text: 'Users', href: '/users' },
-	{ id: 2, text: 'Customers', href: '/customers' },
-	{ id: 3, text: 'Projects', href: '/projects' },
+	{ id: 1, text: 'Clients', href: '/customers' },
+	{ id: 2, text: 'Dossiers', href: '/files' },
+	{ id: 3, text: 'Rendez-vous', href: '/appointments' },
+	{ id: 4, text: 'Factures', href: '/invoices' },
 ];
 
 const settings = [
 	{ id: 1, text: 'Profile', href: '/profile' },
-	{ id: 2, text: 'Account', href: '/account' },
-	{ id: 3, text: 'Dashboard', href: '/dashboard' },
-	{ id: 4, text: 'Logout', href: '/connexion' },
+	{ id: 2, text: 'Administration', href: '/administration' },
+	{ id: 3, text: 'Logout', href: '/login' },
 ];
 
 function Header() {
