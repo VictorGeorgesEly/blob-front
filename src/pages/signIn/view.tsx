@@ -10,6 +10,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Component } from 'react';
 import { connect } from '../../data/auth';
+import { Navigate } from 'react-router-dom';
 
 type SignInProps = {};
 
@@ -17,6 +18,8 @@ type SignInState = {
 	loading: boolean;
 	username: string;
 	password: string;
+	error: unknown;
+	isLogged: boolean;
 };
 
 export class SignInView extends Component<SignInProps, SignInState> {
@@ -24,13 +27,20 @@ export class SignInView extends Component<SignInProps, SignInState> {
 		loading: false,
 		username: '',
 		password: '',
+		error: '',
+		isLogged: false,
 	};
 
-	handleConnect = (event: React.FormEvent<HTMLFormElement>) => {
+	handleConnect = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const { username, password } = this.state;
 		this.setState({ loading: true });
-		return connect(username, password);
+		try {
+			const isLogged = await connect(username, password);
+			this.setState({ isLogged });
+		} catch (error) {
+			// TODO
+		}
 	};
 
 	change = (name: string, value: any) => {
@@ -52,6 +62,7 @@ export class SignInView extends Component<SignInProps, SignInState> {
 	render() {
 		return (
 			<Grid container component="main" sx={{ height: '100vh' }}>
+				{this.state.isLogged && <Navigate to="/" replace={true} />}
 				<Grid
 					item
 					xs={false}
