@@ -9,6 +9,7 @@ export const connect = async (username: string, password: string) => {
 	console.log(pb.authStore.isValid);
 	console.log(pb.authStore.token);
 	console.log(pb.authStore.model?.id);
+
 	return authData;
 };
 

@@ -15,6 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { logout } from '../data/auth';
 
 const pages = [
 	{ id: 1, text: 'Clients', href: '/customers' },
@@ -49,6 +50,7 @@ function Header() {
 	};
 
 	const handleCloseUserMenu = () => {
+		logout(); // TODO
 		setAnchorElUser(null);
 	};
 

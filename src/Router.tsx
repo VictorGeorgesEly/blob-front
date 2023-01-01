@@ -1,9 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
-import { isLoggedIn, logout } from './data/auth';
+import { isLoggedIn } from './data/auth';
 import SignIn from './pages/signIn';
 
-export type ProtectedRouteProps = {
+type ProtectedRouteProps = {
 	isAuthenticated: boolean;
 	authenticationPath: string;
 	outlet: JSX.Element;
@@ -17,13 +17,13 @@ function ProtectedRoute({
 	if (isAuthenticated) {
 		return outlet;
 	} else {
-		return <Navigate to={{ pathname: authenticationPath }} replace />;
+		return <Navigate to={{ pathname: authenticationPath }} />;
 	}
 }
 
 export default function Router() {
 	const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-		isAuthenticated: !isLoggedIn,
+		isAuthenticated: isLoggedIn(),
 		authenticationPath: '/login',
 	};
 

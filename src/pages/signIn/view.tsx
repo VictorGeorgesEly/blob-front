@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from '../../data/auth';
 
 type SignInProps = {};
 
@@ -24,6 +24,29 @@ export class SignInView extends Component<SignInProps, SignInState> {
 		loading: false,
 		username: '',
 		password: '',
+	};
+
+	handleConnect = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const { username, password } = this.state;
+		this.setState({ loading: true });
+		return connect(username, password);
+	};
+
+	change = (name: string, value: any) => {
+		this.setState((state) => ({
+			...state,
+			[name]: value,
+		}));
+	};
+
+	handleInput =
+		(name: string) => (event: React.ChangeEvent<HTMLInputElement>) =>
+			this.change(name, event.target.value);
+
+	isLoginDisabled = () => {
+		const { username, password } = this.state;
+		return username !== '' && password !== '';
 	};
 
 	render() {
@@ -70,7 +93,12 @@ export class SignInView extends Component<SignInProps, SignInState> {
 						<Typography component="h1" variant="h5">
 							Sign in
 						</Typography>
-						<Box component="form" noValidate sx={{ mt: 1 }}>
+						<Box
+							component="form"
+							noValidate
+							onSubmit={this.handleConnect}
+							sx={{ mt: 1 }}
+						>
 							<TextField
 								margin="normal"
 								required
@@ -80,6 +108,7 @@ export class SignInView extends Component<SignInProps, SignInState> {
 								name="email"
 								autoComplete="email"
 								autoFocus
+								onChange={this.handleInput('username')}
 							/>
 							<TextField
 								margin="normal"
@@ -90,14 +119,14 @@ export class SignInView extends Component<SignInProps, SignInState> {
 								type="password"
 								id="password"
 								autoComplete="current-password"
+								onChange={this.handleInput('password')}
 							/>
 							<Button
 								type="submit"
 								fullWidth
 								variant="contained"
 								sx={{ mt: 3, mb: 2 }}
-								component={Link}
-								to="/"
+								disabled={!this.isLoginDisabled()}
 							>
 								Sign In
 							</Button>
