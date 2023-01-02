@@ -18,8 +18,8 @@ import { Link } from 'react-router-dom';
 import { logout } from '../data/auth';
 
 const pages = [
-	{ id: 1, text: 'Clients', href: '/customers' },
-	{ id: 2, text: 'Dossiers', href: '/files' },
+	{ id: 1, text: 'Dossiers', href: '/files' },
+	{ id: 2, text: 'Clients', href: '/customers' },
 	{ id: 3, text: 'Rendez-vous', href: '/appointments' },
 	{ id: 4, text: 'Factures', href: '/invoices' },
 ];

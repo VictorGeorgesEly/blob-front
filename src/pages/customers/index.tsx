@@ -6,7 +6,7 @@ type CustomersState = {};
 
 class Customers extends Component<CustomersProps, CustomersState> {
 	render() {
-		return <h1>Customers</h1>;
+		return <h1>Clients</h1>;
 	}
 }
 

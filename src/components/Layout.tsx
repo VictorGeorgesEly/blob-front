@@ -1,8 +1,12 @@
 import { Box, Container } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
+import Appointments from '../pages/appointments';
 import Customers from '../pages/customers';
+import Files from '../pages/files';
 import Home from '../pages/home';
+import Invoices from '../pages/invoices';
 import NotFound from '../pages/notFound';
+import Profile from '../pages/profile';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -20,6 +24,10 @@ export default function Layout() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/customers" element={<Customers />} />
+					<Route path="/files" element={<Files />} />
+					<Route path="/appointments" element={<Appointments />} />
+					<Route path="/invoices" element={<Invoices />} />
+					<Route path="/profile" element={<Profile />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Container>
