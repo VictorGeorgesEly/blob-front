@@ -27,7 +27,7 @@ export class SignInView extends Component<SignInProps, SignInState> {
 		loading: false,
 		username: '',
 		password: '',
-		error: '',
+		error: null,
 		isLogged: false,
 	};
 

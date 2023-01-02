@@ -1,5 +1,6 @@
 import { Box, Container } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
+import Customers from '../pages/customers';
 import Home from '../pages/home';
 import NotFound from '../pages/notFound';
 import Footer from './Footer';
@@ -18,10 +19,11 @@ export default function Layout() {
 			<Container component="main">
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/home" element={<Home />} />
+					<Route path="/customers" element={<Customers />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Container>
+			<br /> {/* TODO */}
 			<Footer />
 		</Box>
 	);
