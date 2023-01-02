@@ -2,13 +2,103 @@ import {
 	Card,
 	CardActionArea,
 	CardContent,
+	Divider,
 	Grid,
+	List,
+	ListItem,
+	ListItemText,
 	Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
+import {
+	CartesianGrid,
+	Legend,
+	Line,
+	LineChart,
+	ResponsiveContainer,
+	Tooltip,
+	XAxis,
+	YAxis,
+} from 'recharts';
 
 type HomeViewProps = {};
+
+const data = [
+	{
+		name: 'Janvier',
+		uv: 4000,
+		pv: 2400,
+		amt: 2400,
+	},
+	{
+		name: 'Février',
+		uv: 3000,
+		pv: 1398,
+		amt: 2210,
+	},
+	{
+		name: 'Mars',
+		uv: 2000,
+		pv: 9800,
+		amt: 2290,
+	},
+	{
+		name: 'Avril',
+		uv: 2780,
+		pv: 3908,
+		amt: 2000,
+	},
+	{
+		name: 'Mai',
+		uv: 1890,
+		pv: 4800,
+		amt: 2181,
+	},
+	{
+		name: 'Juin',
+		uv: 2390,
+		pv: 3800,
+		amt: 2500,
+	},
+	{
+		name: 'Juillet',
+		uv: 3490,
+		pv: 4300,
+		amt: 2100,
+	},
+];
+
+function RowList() {
+	return (
+		<List dense={true}>
+			<ListItem>
+				<ListItemText primary="Texte de description pour la liste" />
+			</ListItem>
+			<Divider />
+			<ListItem>
+				<ListItemText primary="Texte de description pour la liste" />
+			</ListItem>
+			<Divider />
+			<ListItem>
+				<ListItemText primary="Texte de description pour la liste" />
+			</ListItem>
+			<Divider />
+			<ListItem>
+				<ListItemText primary="Texte de description pour la liste" />
+			</ListItem>
+			<Divider />
+			<ListItem>
+				<ListItemText primary="Texte de description pour la liste" />
+			</ListItem>
+			<Divider />
+			<ListItem>
+				<ListItemText primary="Texte de description pour la liste" />
+			</ListItem>
+		</List>
+	);
+}
 
 export class HomeView extends PureComponent<HomeViewProps> {
 	render() {
@@ -18,8 +108,11 @@ export class HomeView extends PureComponent<HomeViewProps> {
 				<Box sx={{ flexGrow: 1 }}>
 					<Grid container spacing={4}>
 						<Grid item xs={12} sm={12} md={6}>
-							<Card sx={{ minWidth: 275, minHeight: '33vh' }}>
-								<CardActionArea>
+							<Card sx={{ minWidth: 275, minHeight: '32vh' }}>
+								<CardActionArea
+									component={Link}
+									to="/appointments"
+								>
 									<CardContent>
 										<Typography
 											gutterBottom
@@ -28,21 +121,13 @@ export class HomeView extends PureComponent<HomeViewProps> {
 										>
 											Mes rendez-vous
 										</Typography>
-										<Typography
-											variant="body2"
-											color="text.secondary"
-										>
-											Lizards are a widespread group of
-											squamate reptiles, with over 6,000
-											species, ranging across all
-											continents except Antarctica
-										</Typography>
+										<RowList />
 									</CardContent>
 								</CardActionArea>
 							</Card>
 						</Grid>
 						<Grid item xs={12} sm={12} md={6}>
-							<Card sx={{ minWidth: 275, minHeight: '33vh' }}>
+							<Card sx={{ minWidth: 275, minHeight: '32vh' }}>
 								<CardActionArea>
 									<CardContent>
 										<Typography
@@ -50,23 +135,15 @@ export class HomeView extends PureComponent<HomeViewProps> {
 											variant="h5"
 											component="div"
 										>
-											Mes tâches
+											Mon agenda
 										</Typography>
-										<Typography
-											variant="body2"
-											color="text.secondary"
-										>
-											Lizards are a widespread group of
-											squamate reptiles, with over 6,000
-											species, ranging across all
-											continents except Antarctica
-										</Typography>
+										<RowList />
 									</CardContent>
 								</CardActionArea>
 							</Card>
 						</Grid>
 						<Grid item xs={12} sm={12} md={6}>
-							<Card sx={{ minWidth: 275, minHeight: '33vh' }}>
+							<Card sx={{ minWidth: 275, minHeight: '32vh' }}>
 								<CardActionArea>
 									<CardContent>
 										<Typography
@@ -76,21 +153,44 @@ export class HomeView extends PureComponent<HomeViewProps> {
 										>
 											Mes revenus
 										</Typography>
-										<Typography
-											variant="body2"
-											color="text.secondary"
+										<ResponsiveContainer
+											width="100%"
+											//height="100%"
+											height={236}
 										>
-											Lizards are a widespread group of
-											squamate reptiles, with over 6,000
-											species, ranging across all
-											continents except Antarctica
-										</Typography>
+											<LineChart
+												data={data}
+												margin={{
+													top: 5,
+													right: 30,
+													left: 20,
+													bottom: 5,
+												}}
+											>
+												<CartesianGrid strokeDasharray="3 3" />
+												<XAxis dataKey="name" />
+												<YAxis />
+												<Tooltip />
+												<Legend />
+												<Line
+													type="monotone"
+													dataKey="pv"
+													stroke="#8884d8"
+													activeDot={{ r: 8 }}
+												/>
+												<Line
+													type="monotone"
+													dataKey="uv"
+													stroke="#82ca9d"
+												/>
+											</LineChart>
+										</ResponsiveContainer>
 									</CardContent>
 								</CardActionArea>
 							</Card>
 						</Grid>
 						<Grid item xs={12} sm={12} md={6}>
-							<Card sx={{ minWidth: 275, minHeight: '33vh' }}>
+							<Card sx={{ minWidth: 275, minHeight: '32vh' }}>
 								<CardActionArea>
 									<CardContent>
 										<Typography
@@ -98,17 +198,9 @@ export class HomeView extends PureComponent<HomeViewProps> {
 											variant="h5"
 											component="div"
 										>
-											TODO
+											Mes tâches
 										</Typography>
-										<Typography
-											variant="body2"
-											color="text.secondary"
-										>
-											Lizards are a widespread group of
-											squamate reptiles, with over 6,000
-											species, ranging across all
-											continents except Antarctica
-										</Typography>
+										<RowList />
 									</CardContent>
 								</CardActionArea>
 							</Card>

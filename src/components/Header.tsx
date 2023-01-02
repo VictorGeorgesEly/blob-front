@@ -76,7 +76,7 @@ function Header() {
 						component={Link}
 						to="/"
 					>
-						Teal
+						Blob
 					</Typography>
 
 					<Box

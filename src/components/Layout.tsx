@@ -20,7 +20,7 @@ export default function Layout() {
 			}}
 		>
 			<Header />
-			<Container component="main">
+			<Container component="main" sx={{ marginBottom: '16px' }}>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/customers" element={<Customers />} />
@@ -31,7 +31,6 @@ export default function Layout() {
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Container>
-			<br /> {/* TODO */}
 			<Footer />
 		</Box>
 	);
