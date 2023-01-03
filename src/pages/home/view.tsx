@@ -10,7 +10,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	CartesianGrid,
@@ -25,48 +25,43 @@ import {
 
 type HomeViewProps = {};
 
+type HomeViewState = {};
+
 const data = [
 	{
-		name: 'Page A',
+		name: 'Janvier',
 		uv: 4000,
 		pv: 2400,
-		amt: 2400,
 	},
 	{
-		name: 'Page B',
+		name: 'Février',
 		uv: 3000,
 		pv: 1398,
-		amt: 2210,
 	},
 	{
-		name: 'Page C',
+		name: 'Mars',
 		uv: 2000,
 		pv: 9800,
-		amt: 2290,
 	},
 	{
-		name: 'Page D',
+		name: 'Avril',
 		uv: 2780,
 		pv: 3908,
-		amt: 2000,
 	},
 	{
-		name: 'Page E',
+		name: 'Mai',
 		uv: 1890,
 		pv: 4800,
-		amt: 2181,
 	},
 	{
-		name: 'Page F',
+		name: 'Juin',
 		uv: 2390,
 		pv: 3800,
-		amt: 2500,
 	},
 	{
-		name: 'Page G',
+		name: 'Juillet',
 		uv: 3490,
 		pv: 4300,
-		amt: 2100,
 	},
 ];
 
@@ -100,7 +95,7 @@ function RowList() {
 	);
 }
 
-export class HomeView extends PureComponent<HomeViewProps> {
+export class HomeView extends Component<HomeViewProps, HomeViewState> {
 	render() {
 		return (
 			<>
@@ -170,7 +165,11 @@ export class HomeView extends PureComponent<HomeViewProps> {
 											<CartesianGrid strokeDasharray="3 3" />
 											<XAxis dataKey="name" />
 											<YAxis />
-											<Tooltip />
+											<Tooltip
+												wrapperStyle={{
+													color: 'black',
+												}}
+											/>
 											<Legend />
 											<Line
 												type="monotone"
