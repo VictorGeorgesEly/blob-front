@@ -22,6 +22,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts';
+import { MAIN_COLOR, SECONDARY_COLOR } from '../../colors';
 
 type HomeViewProps = {};
 
@@ -153,7 +154,7 @@ export class HomeView extends Component<HomeViewProps, HomeViewState> {
 									>
 										<LineChart
 											width={500}
-											height={300}
+											height={320}
 											data={data}
 											margin={{
 												top: 5,
@@ -174,13 +175,13 @@ export class HomeView extends Component<HomeViewProps, HomeViewState> {
 											<Line
 												type="monotone"
 												dataKey="pv"
-												stroke="#8884d8"
+												stroke={MAIN_COLOR} //"#8884d8"
 												activeDot={{ r: 8 }}
 											/>
 											<Line
 												type="monotone"
 												dataKey="uv"
-												stroke="#82ca9d"
+												stroke={SECONDARY_COLOR} //"#82ca9d"
 											/>
 										</LineChart>
 									</ResponsiveContainer>
