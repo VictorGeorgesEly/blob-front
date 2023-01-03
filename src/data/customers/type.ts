@@ -17,6 +17,7 @@ type Customer = {
 	lastName: string;
 	username: string;
 	verified: boolean;
+	socialSecurity: number;
 };
 
 export type CustomerData = Customer & Universal;
