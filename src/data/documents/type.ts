@@ -2,16 +2,16 @@ import { CustomerData } from '../customers/type';
 import { Universal } from '../type';
 import { UserData } from '../users/type';
 
-type Appointment = {
+type Document = {
 	customer: string;
-	date: Date;
+	document: string;
 	user: string;
 	expand: Expand;
 };
 
 type Expand = {
-	customer: CustomerData;
 	user: UserData;
+	customer: CustomerData;
 };
 
-export type AppointmentData = Appointment & Universal;
+export type DocumentData = Document & Universal;

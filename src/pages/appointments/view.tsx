@@ -13,7 +13,7 @@ const columns: GridColDef[] = [
 	{
 		field: 'user',
 		headerName: 'Utilisateur',
-		flex: 0.75,
+		flex: 1,
 		valueGetter: (params: GridValueGetterParams) =>
 			`${params.row.expand.user.first_name || ''} ${
 				params.row.expand.user.last_name || ''
@@ -22,7 +22,7 @@ const columns: GridColDef[] = [
 	{
 		field: 'customer',
 		headerName: 'Client',
-		flex: 0.75,
+		flex: 1,
 		valueGetter: (params: GridValueGetterParams) =>
 			`${params.row.expand.customer.first_name || ''} ${
 				params.row.expand.customer.last_name || ''

@@ -10,7 +10,7 @@ const columns: GridColDef[] = [
 		headerName: 'Full name',
 		description: 'This column has a value getter and is not sortable.',
 		sortable: false,
-		flex: 0.75,
+		flex: 1,
 		valueGetter: (params: GridValueGetterParams) =>
 			`${params.row.first_name || ''} ${params.row.last_name || ''}`,
 	},
@@ -27,7 +27,7 @@ const columns: GridColDef[] = [
 	{
 		field: 'added_by',
 		headerName: 'Ajouté par',
-		flex: 0.75,
+		flex: 1,
 		valueGetter: (params: GridValueGetterParams) =>
 			`${params.row.expand.added_by.username || ''}`,
 	},
