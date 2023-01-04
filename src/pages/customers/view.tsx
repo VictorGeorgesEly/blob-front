@@ -64,7 +64,7 @@ export default class CustomersView extends Component<
 					alignItems="center"
 				>
 					<Grid>
-						<h1>Customers</h1>
+						<h1>Clients</h1>
 					</Grid>
 					<Grid>
 						<Button
@@ -72,7 +72,7 @@ export default class CustomersView extends Component<
 							//component={Link}
 							//to={'/customers/add'}
 						>
-							Nouveau client
+							Nouveau dossier
 						</Button>
 					</Grid>
 				</Grid>
