@@ -1,7 +1,6 @@
 import { Box, Button, Grid } from '@mui/material';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { DataToolbar } from '../../components/DataToolbar';
 import { CustomerData } from '../../data/customers/type';
 
@@ -70,10 +69,10 @@ export default class CustomersView extends Component<
 					<Grid>
 						<Button
 							variant="contained"
-							component={Link}
-							to={'/customers/add'}
+							//component={Link}
+							//to={'/customers/add'}
 						>
-							Add Customer
+							Nouveau client
 						</Button>
 					</Grid>
 				</Grid>

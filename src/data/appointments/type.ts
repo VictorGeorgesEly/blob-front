@@ -1,9 +1,11 @@
+import { CustomerData } from '../customers/type';
 import { Universal } from '../type';
+import { UserData } from '../users/type';
 
 type Appointment = {
-	customer: string;
+	customer: CustomerData;
 	date: Date;
-	user: string;
+	user: UserData;
 };
 
 export type AppointmentData = Appointment & Universal;

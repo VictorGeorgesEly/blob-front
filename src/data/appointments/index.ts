@@ -5,7 +5,8 @@ export async function getAppointments(): Promise<AppointmentData[]> {
 	const records = await pb
 		.collection('appointments')
 		.getFullList<AppointmentData>(200, {
-			sort: '-created',
+			sort: '-date',
+			expand: 'user,customer',
 		});
 	return records;
 }
