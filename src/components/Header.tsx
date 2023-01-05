@@ -50,8 +50,11 @@ function Header() {
 	};
 
 	const handleCloseUserMenu = () => {
-		logout(); // TODO
 		setAnchorElUser(null);
+	};
+
+	const handleLogout = () => {
+		logout();
 	};
 
 	return (
@@ -192,18 +195,26 @@ function Header() {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting) => (
-								<MenuItem
-									key={setting.id}
-									onClick={handleCloseUserMenu}
-									component={Link}
-									to={setting.href}
-								>
-									<Typography textAlign="center">
-										{setting.text}
-									</Typography>
-								</MenuItem>
-							))}
+							{settings.map((setting) => {
+								let onClick: () => void;
+								if (setting.id === 3) {
+									onClick = handleLogout;
+								} else {
+									onClick = handleCloseUserMenu;
+								}
+								return (
+									<MenuItem
+										key={setting.id}
+										onClick={onClick}
+										component={Link}
+										to={setting.href}
+									>
+										<Typography textAlign="center">
+											{setting.text}
+										</Typography>
+									</MenuItem>
+								);
+							})}
 						</Menu>
 					</Box>
 				</Toolbar>
