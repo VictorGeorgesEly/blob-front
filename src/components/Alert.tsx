@@ -30,7 +30,7 @@ export default function Snackbars({ message, type }: Props) {
 	};
 
 	return (
-		<Stack spacing={2} sx={{ width: '100%' }}>
+		<Stack spacing={2} sx={{ width: '100%', position: 'absolute' }}>
 			<Snackbar
 				open={open}
 				autoHideDuration={6000}
