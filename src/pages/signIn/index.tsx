@@ -8,7 +8,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { isLoggedIn, login } from '../../data/auth';
 import { ConnectionData } from '../../data/auth/type';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -22,7 +22,9 @@ function SignIn() {
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 
-	const isDisabled = () => !formData.identity || !formData.password;
+	const isDisabled = (): boolean => !formData.identity || !formData.password;
+
+	const navigate = useNavigate();
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -37,8 +39,8 @@ function SignIn() {
 			if (response.error) {
 				setError(response.error);
 			} else {
-				console.log('Ok');
-				// Appelez la fonction `navigate`
+				navigate('../', { replace: true });
+				navigate(0); // TODO https://stackoverflow.com/questions/68825965/react-router-v6-usenavigate-doesnt-navigate-if-replacing-last-element-in-path
 			}
 			setLoading(false);
 		} catch (error) {
@@ -54,7 +56,7 @@ function SignIn() {
 	return (
 		<Grid container component="main" sx={{ height: '100vh' }}>
 			{error && <p className="error">{error}</p>}
-			{isLoggedIn() && <Navigate to="/" />}
+			{/*isLoggedIn() && <Navigate to="/" replace />*/}
 			<Grid
 				item
 				xs={false}

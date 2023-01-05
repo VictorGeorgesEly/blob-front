@@ -4,6 +4,7 @@ import { AnswerData, ConnectionData, CorrectAnswer } from './type';
 export async function login(
 	ConnectionData: ConnectionData,
 ): Promise<CorrectAnswer<AnswerData> | { error?: string }> {
+	logout();
 	try {
 		const response = await pb
 			.collection('users')
