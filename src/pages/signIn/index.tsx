@@ -13,6 +13,7 @@ import { isLoggedIn, login } from '../../data/auth';
 import { ConnectionData } from '../../data/auth/type';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Progress from '../../components/Progress';
+import Snackbars from '../../components/Alert';
 
 function SignIn() {
 	const [formData, setFormData] = useState<ConnectionData>({
@@ -55,7 +56,7 @@ function SignIn() {
 
 	return (
 		<Grid container component="main" sx={{ height: '100vh' }}>
-			{error && <p className="error">{error}</p>}
+			{error && <Snackbars message={error} type="error" />}
 			{isLoggedIn() && <Navigate to="/" replace />}
 			<Grid
 				item
