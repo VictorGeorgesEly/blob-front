@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Appointments from '../pages/appointments';
 import Customers from '../pages/customers';
 import Files from '../pages/files';
+import AddFile from '../pages/files/addFile';
+import File from '../pages/files/file';
 import Home from '../pages/home';
 import Invoices from '../pages/invoices';
 import NotFound from '../pages/notFound';
@@ -25,6 +27,8 @@ export default function Layout() {
 					<Route path="/" element={<Home />} />
 					<Route path="/customers" element={<Customers />} />
 					<Route path="/files" element={<Files />} />
+					<Route path="/files/:id" element={<File />} />
+					<Route path="/files/add" element={<AddFile />} />
 					<Route path="/appointments" element={<Appointments />} />
 					<Route path="/invoices" element={<Invoices />} />
 					<Route path="/profile" element={<Profile />} />
