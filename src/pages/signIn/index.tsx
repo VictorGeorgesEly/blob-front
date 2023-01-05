@@ -56,7 +56,7 @@ function SignIn() {
 	return (
 		<Grid container component="main" sx={{ height: '100vh' }}>
 			{error && <p className="error">{error}</p>}
-			{/*isLoggedIn() && <Navigate to="/" replace />*/}
+			{isLoggedIn() && <Navigate to="/" replace />}
 			<Grid
 				item
 				xs={false}
