@@ -54,7 +54,7 @@ export default class FilesView extends Component<
 						<h1>Dossiers</h1>
 					</Grid>
 					<Grid>
-						<Button variant="contained">Nouveau rendez-vous</Button>
+						<Button variant="contained">Nouveau dossier</Button>
 					</Grid>
 				</Grid>
 				<Box sx={{ height: '70vh', width: '100%' }}>

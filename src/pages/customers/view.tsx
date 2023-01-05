@@ -57,25 +57,7 @@ export default class CustomersView extends Component<
 	render() {
 		return (
 			<>
-				<Grid
-					container
-					direction="row"
-					justifyContent="space-between"
-					alignItems="center"
-				>
-					<Grid>
-						<h1>Clients</h1>
-					</Grid>
-					<Grid>
-						<Button
-							variant="contained"
-							//component={Link}
-							//to={'/customers/add'}
-						>
-							Nouveau dossier
-						</Button>
-					</Grid>
-				</Grid>
+				<h1>Clients</h1>
 				<Box sx={{ height: '70vh', width: '100%' }}>
 					<DataGrid
 						rows={this.props.customers}

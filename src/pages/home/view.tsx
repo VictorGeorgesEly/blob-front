@@ -131,9 +131,21 @@ export class HomeView extends Component<HomeViewProps, HomeViewState> {
 											variant="h5"
 											component="div"
 										>
-											Mon agenda
+											Mes factures
 										</Typography>
-										<RowList />
+										<List dense={true}>
+											<ListItem>
+												<ListItemText primary="Texte de description pour la liste" />
+											</ListItem>
+											<Divider />
+											<ListItem>
+												<ListItemText primary="Texte de description pour la liste" />
+											</ListItem>
+											<Divider />
+											<ListItem>
+												<ListItemText primary="Texte de description pour la liste" />
+											</ListItem>
+										</List>
 									</CardContent>
 								</CardActionArea>
 							</Card>

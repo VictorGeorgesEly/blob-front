@@ -59,19 +59,7 @@ export default class InvoicesView extends Component<
 	render() {
 		return (
 			<>
-				<Grid
-					container
-					direction="row"
-					justifyContent="space-between"
-					alignItems="center"
-				>
-					<Grid>
-						<h1>Factures</h1>
-					</Grid>
-					<Grid>
-						<Button variant="contained">Nouvelle facture</Button>
-					</Grid>
-				</Grid>
+				<h1>Factures</h1>
 				<Box sx={{ height: '70vh', width: '100%' }}>
 					<DataGrid
 						rows={this.props.invoices}
