@@ -2,6 +2,7 @@ import { Box, Container } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
 import Appointments from '../pages/appointments';
 import Customers from '../pages/customers';
+import AddCustomer from '../pages/customers/addCustomer';
 import Files from '../pages/files';
 import AddFile from '../pages/files/addFile';
 import File from '../pages/files/file';
@@ -26,6 +27,7 @@ export default function Layout() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/customers" element={<Customers />} />
+					<Route path="/customers/add" element={<AddCustomer />} />
 					<Route path="/files" element={<Files />} />
 					<Route path="/files/:id" element={<File />} />
 					<Route path="/files/add" element={<AddFile />} />

@@ -38,14 +38,22 @@ const getDesignTokens = (mode: PaletteMode) => ({
 	},
 });
 
-export default function Theme() {
+const usePreferredColorScheme = () => {
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+	return prefersDarkMode ? 'dark' : 'light';
+};
 
+const useTheme = () => {
+	const preferredColorScheme = usePreferredColorScheme();
 	const theme = React.useMemo(
-		() => createTheme(getDesignTokens(prefersDarkMode ? 'dark' : 'light')),
-		[prefersDarkMode],
+		() => createTheme(getDesignTokens(preferredColorScheme)),
+		[preferredColorScheme],
 	);
+	return theme;
+};
 
+export default function Theme() {
+	const theme = useTheme();
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
