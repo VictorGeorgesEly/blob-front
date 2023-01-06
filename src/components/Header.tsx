@@ -173,8 +173,10 @@ function Header() {
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton
+								size="large"
 								onClick={handleOpenUserMenu}
 								sx={{ p: 0 }}
+								color="inherit"
 							>
 								<AccountCircle />
 							</IconButton>
