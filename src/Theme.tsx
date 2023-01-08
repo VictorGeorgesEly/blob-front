@@ -52,7 +52,7 @@ const useTheme = () => {
 	return theme;
 };
 
-export default function Theme() {
+export default function Theme(): JSX.Element {
 	const theme = useTheme();
 	return (
 		<ThemeProvider theme={theme}>

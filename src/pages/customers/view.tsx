@@ -1,7 +1,7 @@
 import { Button, Grid } from '@mui/material';
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { CustomerData } from '../../data/customers/type';
 
@@ -56,45 +56,34 @@ const columns: GridColDef[] = [
 	},
 ];
 
-type CustomersViewProps = {
+type Props = {
 	customers: CustomerData[];
 	loading: boolean;
+	error: string;
 };
 
-type CustomersViewState = {};
-
-export default class CustomersView extends Component<
-	CustomersViewProps,
-	CustomersViewState
-> {
-	static defaultProps = {
-		customers: [],
-		loading: false,
-	};
-
-	render() {
-		return (
-			<>
-				<Grid
-					container
-					direction="row"
-					justifyContent="space-between"
-					alignItems="center"
-				>
-					<Grid>
-						<h1>Clients</h1>
-					</Grid>
-					<Grid>
-						<Button variant="contained" component={Link} to="add">
-							Nouveau client
-						</Button>
-					</Grid>
+const CustomersView: React.FC<Props> = (props: Props): JSX.Element => {
+	return (
+		<>
+			{props.error && <Snackbars message={props.error} type="error" />}
+			<Grid
+				container
+				direction="row"
+				justifyContent="space-between"
+				alignItems="center"
+			>
+				<Grid>
+					<h1>Clients</h1>
 				</Grid>
-				<DataGridComponent
-					data={this.props.customers}
-					columns={columns}
-				/>
-			</>
-		);
-	}
-}
+				<Grid>
+					<Button variant="contained" component={Link} to="add">
+						Nouveau client
+					</Button>
+				</Grid>
+			</Grid>
+			<DataGridComponent data={props.customers} columns={columns} />
+		</>
+	);
+};
+
+export default CustomersView;

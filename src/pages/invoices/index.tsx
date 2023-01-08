@@ -1,39 +1,31 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { getInvoices } from '../../data/invoices';
 import { InvoiceData } from '../../data/invoices/type';
 import InvoicesView from './view';
 
-type InvoicesProps = {};
+type Props = {};
 
-type InvoicesState = {
-	invoices: InvoiceData[];
-	isLoading: boolean;
+const Invoices: React.FC<Props> = (): JSX.Element => {
+	const [invoices, setInvoices] = useState<InvoiceData[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string>('');
+
+	useEffect(() => {
+		setIsLoading(true);
+		getInvoices()
+			.then((res) => {
+				setInvoices(res);
+				setIsLoading(false);
+			})
+			.catch((err) => {
+				setError(err.message);
+				setIsLoading(false);
+			});
+	}, []);
+
+	return (
+		<InvoicesView invoices={invoices} loading={isLoading} error={error} />
+	);
 };
-
-class Invoices extends Component<InvoicesProps, InvoicesState> {
-	state: InvoicesState = {
-		invoices: [],
-		isLoading: true,
-	};
-
-	componentDidMount() {
-		this.getInvoices();
-	}
-
-	getInvoices = () => {
-		this.setState({ isLoading: true });
-		getInvoices().then((res) => {
-			this.setState({ invoices: res, isLoading: false });
-		});
-	};
-	render() {
-		return (
-			<InvoicesView
-				invoices={this.state.invoices}
-				loading={this.state.isLoading}
-			/>
-		);
-	}
-}
 
 export default Invoices;

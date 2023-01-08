@@ -6,7 +6,7 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 	props,
 	ref,
-) {
+): JSX.Element {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
@@ -15,8 +15,8 @@ type Props = {
 	type: 'success' | 'error' | 'warning' | 'info';
 };
 
-export default function Snackbars({ message, type }: Props) {
-	const [open, setOpen] = React.useState(true);
+export default function Snackbars({ message, type }: Props): JSX.Element {
+	const [open, setOpen] = React.useState<boolean>(true);
 
 	const handleClose = (
 		event?: React.SyntheticEvent | Event,
@@ -35,7 +35,7 @@ export default function Snackbars({ message, type }: Props) {
 				open={open}
 				autoHideDuration={6000}
 				onClose={handleClose}
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+				anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 			>
 				<Alert
 					onClose={handleClose}

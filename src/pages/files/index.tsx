@@ -1,39 +1,29 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { getFiles } from '../../data/files';
 import { FileData } from '../../data/files/type';
 import FilesView from './view';
 
-type FilesProps = {};
+type Props = {};
 
-type FilesState = {
-	files: FileData[];
-	isLoading: boolean;
+const Files: React.FC<Props> = (): JSX.Element => {
+	const [files, setFiles] = useState<FileData[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string>('');
+
+	useEffect(() => {
+		setIsLoading(true);
+		getFiles()
+			.then((res) => {
+				setFiles(res);
+				setIsLoading(false);
+			})
+			.catch((err) => {
+				setError(err.message);
+				setIsLoading(false);
+			});
+	}, []);
+
+	return <FilesView files={files} loading={isLoading} error={error} />;
 };
-
-class Files extends Component<FilesProps, FilesState> {
-	state: FilesState = {
-		files: [],
-		isLoading: true,
-	};
-
-	componentDidMount() {
-		this.getFiles();
-	}
-
-	getFiles = () => {
-		this.setState({ isLoading: true });
-		getFiles().then((res) => {
-			this.setState({ files: res, isLoading: false });
-		});
-	};
-	render() {
-		return (
-			<FilesView
-				files={this.state.files}
-				loading={this.state.isLoading}
-			/>
-		);
-	}
-}
 
 export default Files;

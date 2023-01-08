@@ -1,14 +1,9 @@
-import { Component } from 'react';
-import { HomeView } from './view';
+import HomeView from './view';
 
 type HomeProps = {};
 
-type HomeState = {};
-
-class Home extends Component<HomeProps, HomeState> {
-	render() {
-		return <HomeView />;
-	}
-}
+const Home: React.FC<HomeProps> = (): JSX.Element => {
+	return <HomeView />;
+};
 
 export default Home;

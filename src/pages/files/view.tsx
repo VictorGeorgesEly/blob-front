@@ -1,7 +1,7 @@
 import { Button, Grid } from '@mui/material';
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { FileData } from '../../data/files/type';
 
@@ -43,42 +43,34 @@ const columns: GridColDef[] = [
 	},
 ];
 
-type FilesViewProps = {
+type Props = {
 	files: FileData[];
 	loading: boolean;
+	error: string;
 };
 
-type FilesViewState = {};
-
-export default class FilesView extends Component<
-	FilesViewProps,
-	FilesViewState
-> {
-	static defaultProps = {
-		files: [],
-		loading: false,
-	};
-
-	render() {
-		return (
-			<>
-				<Grid
-					container
-					direction="row"
-					justifyContent="space-between"
-					alignItems="center"
-				>
-					<Grid>
-						<h1>Dossiers</h1>
-					</Grid>
-					<Grid>
-						<Button variant="contained" component={Link} to="add">
-							Nouveau dossier
-						</Button>
-					</Grid>
+const FilesView: React.FC<Props> = (props: Props): JSX.Element => {
+	return (
+		<>
+			{props.error && <Snackbars message={props.error} type="error" />}
+			<Grid
+				container
+				direction="row"
+				justifyContent="space-between"
+				alignItems="center"
+			>
+				<Grid>
+					<h1>Dossiers</h1>
 				</Grid>
-				<DataGridComponent data={this.props.files} columns={columns} />
-			</>
-		);
-	}
-}
+				<Grid>
+					<Button variant="contained" component={Link} to="add">
+						Nouveau dossier
+					</Button>
+				</Grid>
+			</Grid>
+			<DataGridComponent data={props.files} columns={columns} />
+		</>
+	);
+};
+
+export default FilesView;

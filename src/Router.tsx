@@ -21,7 +21,7 @@ function ProtectedRoute({
 	}
 }
 
-export default function Router() {
+export default function Router(): JSX.Element {
 	const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
 		isAuthenticated: isLoggedIn(),
 		authenticationPath: '/login',

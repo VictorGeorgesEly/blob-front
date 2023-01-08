@@ -1,39 +1,35 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { getCustomers } from '../../data/customers';
 import { CustomerData } from '../../data/customers/type';
 import CustomersView from './view';
 
-type CustomersProps = {};
+type Props = {};
 
-type CustomersState = {
-	customers: CustomerData[];
-	isLoading: boolean;
+const Customers: React.FC<Props> = (): JSX.Element => {
+	const [customers, setCustomers] = useState<CustomerData[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string>('');
+
+	useEffect(() => {
+		setIsLoading(true);
+		getCustomers()
+			.then((res) => {
+				setCustomers(res);
+				setIsLoading(false);
+			})
+			.catch((err) => {
+				setError(err.message);
+				setIsLoading(false);
+			});
+	}, []);
+
+	return (
+		<CustomersView
+			customers={customers}
+			loading={isLoading}
+			error={error}
+		/>
+	);
 };
-
-class Customers extends Component<CustomersProps, CustomersState> {
-	state: CustomersState = {
-		customers: [],
-		isLoading: true,
-	};
-
-	componentDidMount() {
-		this.getCustomers();
-	}
-
-	getCustomers = () => {
-		this.setState({ isLoading: true });
-		getCustomers().then((res) => {
-			this.setState({ customers: res, isLoading: false });
-		});
-	};
-	render() {
-		return (
-			<CustomersView
-				customers={this.state.customers}
-				loading={this.state.isLoading}
-			/>
-		);
-	}
-}
 
 export default Customers;

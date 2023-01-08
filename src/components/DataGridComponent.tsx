@@ -8,7 +8,7 @@ type Props<T = any> = {
 	columns: GridColDef[];
 };
 
-const DataGridComponent: React.FC<Props> = (props) => {
+const DataGridComponent: React.FC<Props> = (props: Props): JSX.Element => {
 	return (
 		<Box sx={{ height: '70vh', width: '100%' }}>
 			<DataGrid

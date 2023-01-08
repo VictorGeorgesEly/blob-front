@@ -1,39 +1,35 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { getAppointments } from '../../data/appointments';
 import { AppointmentData } from '../../data/appointments/type';
 import AppointmentsView from './view';
 
-type AppointmentsProps = {};
+type Props = {};
 
-type AppointmentsState = {
-	appointments: AppointmentData[];
-	isLoading: boolean;
+const Appointments: React.FC<Props> = (): JSX.Element => {
+	const [appointments, setAppointments] = useState<AppointmentData[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string>('');
+
+	useEffect(() => {
+		setIsLoading(true);
+		getAppointments()
+			.then((res) => {
+				setAppointments(res);
+				setIsLoading(false);
+			})
+			.catch((err) => {
+				setError(err.message);
+				setIsLoading(false);
+			});
+	}, []);
+
+	return (
+		<AppointmentsView
+			appointments={appointments}
+			loading={isLoading}
+			error={error}
+		/>
+	);
 };
-
-class Appointments extends Component<AppointmentsProps, AppointmentsState> {
-	state: AppointmentsState = {
-		appointments: [],
-		isLoading: true,
-	};
-
-	componentDidMount() {
-		this.getAppointments();
-	}
-
-	getAppointments = () => {
-		this.setState({ isLoading: true });
-		getAppointments().then((res) => {
-			this.setState({ appointments: res, isLoading: false });
-		});
-	};
-	render() {
-		return (
-			<AppointmentsView
-				appointments={this.state.appointments}
-				loading={this.state.isLoading}
-			/>
-		);
-	}
-}
 
 export default Appointments;

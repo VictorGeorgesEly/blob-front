@@ -15,7 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Progress from '../../components/Progress';
 import Snackbars from '../../components/Alert';
 
-function SignIn() {
+function SignIn(): JSX.Element {
 	const [formData, setFormData] = useState<ConnectionData>({
 		identity: '',
 		password: '',

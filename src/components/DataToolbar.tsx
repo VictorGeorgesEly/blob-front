@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { GridToolbar, GridToolbarQuickFilter } from '@mui/x-data-grid';
 
-export function DataToolbar() {
+export function DataToolbar(): JSX.Element {
 	return (
 		<Box
 			sx={{

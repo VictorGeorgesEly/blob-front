@@ -1,5 +1,5 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Component } from 'react';
+import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { AppointmentData } from '../../data/appointments/type';
 
@@ -29,31 +29,20 @@ const columns: GridColDef[] = [
 	},
 ];
 
-type AppointmentsViewProps = {
+type Props = {
 	appointments: AppointmentData[];
 	loading: boolean;
+	error: string;
 };
 
-type AppointmentsViewState = {};
+const AppointmentsView: React.FC<Props> = (props: Props): JSX.Element => {
+	return (
+		<>
+			{props.error && <Snackbars message={props.error} type="error" />}
+			<h1>Rendez-vous</h1>
+			<DataGridComponent data={props.appointments} columns={columns} />
+		</>
+	);
+};
 
-export default class AppointmentsView extends Component<
-	AppointmentsViewProps,
-	AppointmentsViewState
-> {
-	static defaultProps = {
-		appointments: [],
-		loading: false,
-	};
-
-	render() {
-		return (
-			<>
-				<h1>Rendez-vous</h1>
-				<DataGridComponent
-					data={this.props.appointments}
-					columns={columns}
-				/>
-			</>
-		);
-	}
-}
+export default AppointmentsView;

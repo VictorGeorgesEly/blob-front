@@ -30,7 +30,7 @@ const settings = [
 	{ id: 3, text: 'Logout', href: '/login' },
 ];
 
-function Header() {
+function Header(): JSX.Element {
 	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
 		null,
 	);

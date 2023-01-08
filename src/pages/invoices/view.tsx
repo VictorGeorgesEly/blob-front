@@ -1,5 +1,5 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Component } from 'react';
+import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { InvoiceData } from '../../data/invoices/type';
 
@@ -39,31 +39,20 @@ const columns: GridColDef[] = [
 	},
 ];
 
-type InvoicesViewProps = {
+type Props = {
 	invoices: InvoiceData[];
 	loading: boolean;
+	error: string;
 };
 
-type InvoicesViewState = {};
+const InvoicesView: React.FC<Props> = (props: Props): JSX.Element => {
+	return (
+		<>
+			{props.error && <Snackbars message={props.error} type="error" />}
+			<h1>Factures</h1>
+			<DataGridComponent data={props.invoices} columns={columns} />
+		</>
+	);
+};
 
-export default class InvoicesView extends Component<
-	InvoicesViewProps,
-	InvoicesViewState
-> {
-	static defaultProps = {
-		invoices: [],
-		loading: false,
-	};
-
-	render() {
-		return (
-			<>
-				<h1>Factures</h1>
-				<DataGridComponent
-					data={this.props.invoices}
-					columns={columns}
-				/>
-			</>
-		);
-	}
-}
+export default InvoicesView;

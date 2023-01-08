@@ -14,7 +14,7 @@ import Profile from '../pages/profile';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Layout() {
+export default function Layout(): JSX.Element {
 	return (
 		<Box
 			sx={{

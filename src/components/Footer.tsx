@@ -1,6 +1,6 @@
 import { Box, Container, Link, Typography } from '@mui/material';
 
-function Copyright() {
+function Copyright(): JSX.Element {
 	return (
 		<Typography variant="body2" color="text.secondary" align="center">
 			{'Copyright © '}
@@ -13,7 +13,7 @@ function Copyright() {
 	);
 }
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
 	return (
 		<Box
 			component="footer"
