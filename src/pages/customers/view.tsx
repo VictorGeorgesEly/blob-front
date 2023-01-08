@@ -1,5 +1,7 @@
+import { Button, Grid } from '@mui/material';
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import DataGridComponent from '../../components/DataGridComponent';
 import { CustomerData } from '../../data/customers/type';
 
@@ -35,6 +37,23 @@ const columns: GridColDef[] = [
 		headerName: 'Created',
 		flex: 1,
 	},
+	{
+		field: 'button',
+		headerName: 'Button',
+		flex: 1,
+		renderCell: (params) => {
+			return (
+				<Button
+					variant="outlined"
+					color="secondary"
+					component={Link}
+					to={params.row.id}
+				>
+					Voir
+				</Button>
+			);
+		},
+	},
 ];
 
 type CustomersViewProps = {
@@ -56,7 +75,21 @@ export default class CustomersView extends Component<
 	render() {
 		return (
 			<>
-				<h1>Clients</h1>
+				<Grid
+					container
+					direction="row"
+					justifyContent="space-between"
+					alignItems="center"
+				>
+					<Grid>
+						<h1>Clients</h1>
+					</Grid>
+					<Grid>
+						<Button variant="contained" component={Link} to="add">
+							Nouveau client
+						</Button>
+					</Grid>
+				</Grid>
 				<DataGridComponent
 					data={this.props.customers}
 					columns={columns}

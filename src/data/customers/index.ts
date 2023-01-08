@@ -10,3 +10,18 @@ export async function getCustomers(): Promise<CustomerData[]> {
 		});
 	return records;
 }
+
+export async function getCustomerById(
+	id: string,
+): Promise<CustomerData | { error?: string }> {
+	try {
+		const record = await pb
+			.collection('customers')
+			.getOne<CustomerData>(id, {
+				expand: 'added_by,phones(customer),addresses(customer),roles(customer)',
+			});
+		return record;
+	} catch (error) {
+		return { error: 'Erreur lors du chargement du client' };
+	}
+}
