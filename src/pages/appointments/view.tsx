@@ -1,7 +1,6 @@
-import { Box, Button, Grid } from '@mui/material';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Component } from 'react';
-import { DataToolbar } from '../../components/DataToolbar';
+import DataGridComponent from '../../components/DataGridComponent';
 import { AppointmentData } from '../../data/appointments/type';
 
 const columns: GridColDef[] = [
@@ -50,15 +49,10 @@ export default class AppointmentsView extends Component<
 		return (
 			<>
 				<h1>Rendez-vous</h1>
-				<Box sx={{ height: '70vh', width: '100%' }}>
-					<DataGrid
-						rows={this.props.appointments}
-						columns={columns}
-						checkboxSelection
-						disableSelectionOnClick
-						components={{ Toolbar: DataToolbar }}
-					/>
-				</Box>
+				<DataGridComponent
+					data={this.props.appointments}
+					columns={columns}
+				/>
 			</>
 		);
 	}

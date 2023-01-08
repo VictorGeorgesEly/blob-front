@@ -1,7 +1,6 @@
-import { Box, Button, Grid } from '@mui/material';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Component } from 'react';
-import { DataToolbar } from '../../components/DataToolbar';
+import DataGridComponent from '../../components/DataGridComponent';
 import { CustomerData } from '../../data/customers/type';
 
 const columns: GridColDef[] = [
@@ -58,15 +57,10 @@ export default class CustomersView extends Component<
 		return (
 			<>
 				<h1>Clients</h1>
-				<Box sx={{ height: '70vh', width: '100%' }}>
-					<DataGrid
-						rows={this.props.customers}
-						columns={columns}
-						checkboxSelection
-						disableSelectionOnClick
-						components={{ Toolbar: DataToolbar }}
-					/>
-				</Box>
+				<DataGridComponent
+					data={this.props.customers}
+					columns={columns}
+				/>
 			</>
 		);
 	}

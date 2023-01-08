@@ -1,8 +1,8 @@
-import { Box, Button, Grid } from '@mui/material';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { Button, Grid } from '@mui/material';
+import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { DataToolbar } from '../../components/DataToolbar';
+import DataGridComponent from '../../components/DataGridComponent';
 import { FileData } from '../../data/files/type';
 
 const columns: GridColDef[] = [
@@ -77,15 +77,7 @@ export default class FilesView extends Component<
 						</Button>
 					</Grid>
 				</Grid>
-				<Box sx={{ height: '70vh', width: '100%' }}>
-					<DataGrid
-						rows={this.props.files}
-						columns={columns}
-						checkboxSelection
-						disableSelectionOnClick
-						components={{ Toolbar: DataToolbar }}
-					/>
-				</Box>
+				<DataGridComponent data={this.props.files} columns={columns} />
 			</>
 		);
 	}

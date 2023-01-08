@@ -27,6 +27,7 @@ export default function Router() {
 		authenticationPath: '/login',
 	};
 
+	// TODO Outlet and loader ?
 	return (
 		<BrowserRouter>
 			<Routes>

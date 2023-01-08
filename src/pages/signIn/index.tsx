@@ -51,7 +51,10 @@ function SignIn() {
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
-		setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+		setFormData((prevFormData: ConnectionData) => ({
+			...prevFormData,
+			[name]: value,
+		}));
 	};
 
 	return (
