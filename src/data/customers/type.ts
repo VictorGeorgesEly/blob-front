@@ -15,9 +15,9 @@ type Customer = {
 
 type Expand = {
 	added_by: UserData;
-	addressesCustomer: AddressesData[];
-	phonesCustomer: PhonesData[];
-	rolesCustomer: RolesData;
+	'addresses(customer)': AddressesData[];
+	'phones(customer)': PhonesData[];
+	'roles(customer)': RolesData;
 };
 
 export type CustomerData = Customer & Universal;

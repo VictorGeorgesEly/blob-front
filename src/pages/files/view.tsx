@@ -5,12 +5,12 @@ import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { FileData } from '../../data/files/type';
 
-const columns: GridColDef[] = [
+const columns: GridColDef<FileData>[] = [
 	{
 		field: 'user',
 		headerName: 'Utilisateur',
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
+		valueGetter: (params: GridValueGetterParams<string, FileData>) =>
 			`${params.row.expand.user.first_name || ''} ${
 				params.row.expand.user.last_name || ''
 			}`,
@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
 		field: 'customer',
 		headerName: 'Client',
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
+		valueGetter: (params: GridValueGetterParams<string, FileData>) =>
 			`${params.row.expand.customer.first_name || ''} ${
 				params.row.expand.customer.last_name || ''
 			}`,

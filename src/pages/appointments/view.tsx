@@ -3,7 +3,7 @@ import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { AppointmentData } from '../../data/appointments/type';
 
-const columns: GridColDef[] = [
+const columns: GridColDef<AppointmentData>[] = [
 	{
 		field: 'date',
 		headerName: 'Date',
@@ -13,7 +13,7 @@ const columns: GridColDef[] = [
 		field: 'user',
 		headerName: 'Utilisateur',
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
+		valueGetter: (params: GridValueGetterParams<string, AppointmentData>) =>
 			`${params.row.expand.user.first_name || ''} ${
 				params.row.expand.user.last_name || ''
 			}`,
@@ -22,7 +22,7 @@ const columns: GridColDef[] = [
 		field: 'customer',
 		headerName: 'Client',
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
+		valueGetter: (params: GridValueGetterParams<string, AppointmentData>) =>
 			`${params.row.expand.customer.first_name || ''} ${
 				params.row.expand.customer.last_name || ''
 			}`,

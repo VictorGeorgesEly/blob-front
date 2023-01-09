@@ -4,8 +4,8 @@ type User = {
 	email: string;
 	emailVisibility: boolean;
 	expand: Expand;
-	firstName: string;
-	lastName: string;
+	first_name: string;
+	last_name: string;
 	username: string;
 	verified: boolean;
 	avatar: string;

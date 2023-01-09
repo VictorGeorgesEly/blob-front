@@ -3,12 +3,12 @@ import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { InvoiceData } from '../../data/invoices/type';
 
-const columns: GridColDef[] = [
+const columns: GridColDef<InvoiceData>[] = [
 	{
 		field: 'user',
 		headerName: 'Facturé par',
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
+		valueGetter: (params: GridValueGetterParams<string, InvoiceData>) =>
 			`${params.row.expand.user.first_name || ''} ${
 				params.row.expand.user.last_name || ''
 			}`,
@@ -17,7 +17,7 @@ const columns: GridColDef[] = [
 		field: 'customer',
 		headerName: 'Client',
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
+		valueGetter: (params: GridValueGetterParams<string, InvoiceData>) =>
 			`${params.row.expand.customer.first_name || ''} ${
 				params.row.expand.customer.last_name || ''
 			}`,

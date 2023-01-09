@@ -6,7 +6,7 @@ type Appointment = {
 	customer: string;
 	date: Date;
 	user: string;
-	expand?: Expand;
+	expand: Expand;
 };
 
 type Expand = {

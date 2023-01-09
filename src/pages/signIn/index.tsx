@@ -41,7 +41,7 @@ function SignIn(): JSX.Element {
 				setError(response.error);
 			} else {
 				navigate('../', { replace: true });
-				navigate(0); // TODO https://stackoverflow.com/questions/68825965/react-router-v6-usenavigate-doesnt-navigate-if-replacing-last-element-in-path
+				//navigate(0); // TODO https://stackoverflow.com/questions/68825965/react-router-v6-usenavigate-doesnt-navigate-if-replacing-last-element-in-path
 			}
 			setLoading(false);
 		} catch (error) {

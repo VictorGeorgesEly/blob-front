@@ -5,14 +5,14 @@ import Snackbars from '../../components/Alert';
 import DataGridComponent from '../../components/DataGridComponent';
 import { CustomerData } from '../../data/customers/type';
 
-const columns: GridColDef[] = [
+const columns: GridColDef<CustomerData>[] = [
 	{
 		field: 'fullName',
 		headerName: 'Full name',
 		description: 'This column has a value getter and is not sortable.',
 		sortable: false,
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
+		valueGetter: (params: GridValueGetterParams<string, CustomerData>) =>
 			`${params.row.first_name || ''} ${params.row.last_name || ''}`,
 	},
 	{
@@ -29,8 +29,10 @@ const columns: GridColDef[] = [
 		field: 'added_by',
 		headerName: 'Ajouté par',
 		flex: 1,
-		valueGetter: (params: GridValueGetterParams) =>
-			`${params.row.expand.added_by.username || ''}`,
+		valueGetter: (params: GridValueGetterParams<string, CustomerData>) =>
+			`${params.row.expand?.added_by.first_name || ''} ${
+				params.row.expand?.added_by.last_name || ''
+			}`,
 	},
 	{
 		field: 'created',
