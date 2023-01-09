@@ -81,7 +81,11 @@ const CustomersView: React.FC<Props> = (props: Props): JSX.Element => {
 					</Button>
 				</Grid>
 			</Grid>
-			<DataGridComponent data={props.customers} columns={columns} />
+			<DataGridComponent
+				data={props.customers}
+				columns={columns}
+				loading={props.loading}
+			/>
 		</>
 	);
 };

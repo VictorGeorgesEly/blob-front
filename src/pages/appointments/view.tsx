@@ -40,7 +40,11 @@ const AppointmentsView: React.FC<Props> = (props: Props): JSX.Element => {
 		<>
 			{props.error && <Snackbars message={props.error} type="error" />}
 			<h1>Rendez-vous</h1>
-			<DataGridComponent data={props.appointments} columns={columns} />
+			<DataGridComponent
+				data={props.appointments}
+				columns={columns}
+				loading={props.loading}
+			/>
 		</>
 	);
 };

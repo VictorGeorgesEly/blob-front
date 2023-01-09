@@ -68,7 +68,11 @@ const FilesView: React.FC<Props> = (props: Props): JSX.Element => {
 					</Button>
 				</Grid>
 			</Grid>
-			<DataGridComponent data={props.files} columns={columns} />
+			<DataGridComponent
+				data={props.files}
+				columns={columns}
+				loading={props.loading}
+			/>
 		</>
 	);
 };

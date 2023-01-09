@@ -50,7 +50,11 @@ const InvoicesView: React.FC<Props> = (props: Props): JSX.Element => {
 		<>
 			{props.error && <Snackbars message={props.error} type="error" />}
 			<h1>Factures</h1>
-			<DataGridComponent data={props.invoices} columns={columns} />
+			<DataGridComponent
+				data={props.invoices}
+				columns={columns}
+				loading={props.loading}
+			/>
 		</>
 	);
 };

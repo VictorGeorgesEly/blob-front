@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Box } from '@mui/material';
+import { Box, LinearProgress } from '@mui/material';
 import { DataToolbar } from './DataToolbar';
 
 type Props<T = any> = {
 	data: T[];
 	columns: GridColDef[];
+	loading: boolean;
 };
 
 const DataGridComponent: React.FC<Props> = (props: Props): JSX.Element => {
@@ -16,7 +17,11 @@ const DataGridComponent: React.FC<Props> = (props: Props): JSX.Element => {
 				columns={props.columns}
 				checkboxSelection
 				disableSelectionOnClick
-				components={{ Toolbar: DataToolbar }}
+				components={{
+					Toolbar: DataToolbar,
+					LoadingOverlay: LinearProgress,
+				}}
+				loading={props.loading}
 			/>
 		</Box>
 	);

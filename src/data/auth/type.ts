@@ -20,7 +20,7 @@ export type AnswerData = {
 	emailVisibility: boolean;
 	email: string;
 	avatar: string;
-	firstName: string;
-	lastName: string;
+	first_name: string;
+	last_name: string;
 	birthday: Date;
 };
