@@ -15,14 +15,14 @@ export type Universal = {
 };
 
 type Addresses = {
-	accessCode: string;
+	access_code: string;
 	additional: string;
 	city: string;
 	country: string;
 	customer: string;
 	number: number;
-	postCode: number;
-	repetitionIndex: string;
+	post_code: number;
+	repetition_index: string;
 	street: string;
 	user: string;
 };
@@ -30,9 +30,9 @@ type Addresses = {
 export type AddressesData = Addresses & Universal;
 
 type Phones = {
-	callSign: number;
+	call_sign: number;
 	customer: string;
-	phoneNumber: number;
+	phone_number: number;
 	user: string;
 };
 

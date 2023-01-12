@@ -8,7 +8,7 @@ import { CustomerData } from '../../data/customers/type';
 const columns: GridColDef<CustomerData>[] = [
 	{
 		field: 'fullName',
-		headerName: 'Full name',
+		headerName: 'Nom',
 		description: 'This column has a value getter and is not sortable.',
 		sortable: false,
 		flex: 1,

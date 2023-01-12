@@ -11,7 +11,7 @@ const columns: GridColDef<AppointmentData>[] = [
 	},
 	{
 		field: 'user',
-		headerName: 'Utilisateur',
+		headerName: 'Kiné',
 		flex: 1,
 		valueGetter: (params: GridValueGetterParams<string, AppointmentData>) =>
 			`${params.row.expand.user.first_name || ''} ${

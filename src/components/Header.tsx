@@ -54,6 +54,7 @@ function Header(): JSX.Element {
 	};
 
 	const handleLogout = () => {
+		setAnchorElUser(null);
 		logout();
 	};
 

@@ -13,7 +13,7 @@ function ProtectedRoute({
 	isAuthenticated,
 	authenticationPath,
 	outlet,
-}: ProtectedRouteProps) {
+}: ProtectedRouteProps): JSX.Element {
 	if (isAuthenticated) {
 		return outlet;
 	} else {

@@ -8,7 +8,7 @@ import { FileData } from '../../data/files/type';
 const columns: GridColDef<FileData>[] = [
 	{
 		field: 'user',
-		headerName: 'Utilisateur',
+		headerName: 'Kiné',
 		flex: 1,
 		valueGetter: (params: GridValueGetterParams<string, FileData>) =>
 			`${params.row.expand.user.first_name || ''} ${

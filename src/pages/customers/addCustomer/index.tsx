@@ -8,49 +8,57 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 enum StepEnum {
-	SHIPPING_ADDRESS,
-	PAYMENT_DETAILS,
-	REVIEW,
+	USER_DETAILS,
+	ADDRESS_DETAILS,
+	PHONE_DETAILS,
 }
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = [
+	'Informations du client',
+	'Addresse du client',
+	'Téléphone du client',
+];
 
-function getStepContent(step: number) {
+function getStepContent(step: number): JSX.Element {
 	switch (step) {
-		case StepEnum.SHIPPING_ADDRESS:
+		case StepEnum.USER_DETAILS:
+			return <UserForm />;
+		case StepEnum.ADDRESS_DETAILS:
 			return <AddressForm />;
-		case StepEnum.PAYMENT_DETAILS:
-			return <PaymentForm />;
-		case StepEnum.REVIEW:
-			return <Review />;
+		case StepEnum.PHONE_DETAILS:
+			return <PhoneForm />;
 		default:
 			throw new Error('Unknown step');
 	}
 }
 
-function AddressForm() {
-	return <h1>AddressForm</h1>;
+function UserForm(): JSX.Element {
+	return <h1>Informations du client</h1>;
 }
 
-function PaymentForm() {
-	return <h1>PaymentForm</h1>;
+function AddressForm(): JSX.Element {
+	return <h1>Addresses du client</h1>;
 }
 
-function Review() {
-	return <h1>Review</h1>;
+function PhoneForm(): JSX.Element {
+	return <h1>Téléphones du client</h1>;
 }
 
-export default function AddCustomer() {
-	const [activeStep, setActiveStep] = React.useState(
-		StepEnum.SHIPPING_ADDRESS,
+export default function AddCustomer(): JSX.Element {
+	const [activeStep, setActiveStep] = React.useState<number>(
+		StepEnum.USER_DETAILS,
 	);
 
-	const handleNext = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep + 1);
+	const handleNext = (): void => {
+		setActiveStep((prevActiveStep: number) => prevActiveStep + 1);
 	};
 
-	const handleBack = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep - 1);
+	const handleBack = (): void => {
+		setActiveStep((prevActiveStep: number) => prevActiveStep - 1);
+	};
+
+	const handReset = (): void => {
+		setActiveStep(StepEnum.USER_DETAILS);
 	};
 
 	return (
@@ -59,7 +67,7 @@ export default function AddCustomer() {
 			sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
 		>
 			<Typography component="h1" variant="h4" align="center">
-				Checkout
+				Enregistrement d&apos;un nouveau client
 			</Typography>
 			<Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
 				{steps.map((label) => (
@@ -78,14 +86,23 @@ export default function AddCustomer() {
 						order confirmation, and will send you an update when
 						your order has shipped.
 					</Typography>
+					<Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+						<Button
+							variant="contained"
+							onClick={handReset}
+							sx={{ mt: 3, ml: 1 }}
+						>
+							Ok
+						</Button>
+					</Box>
 				</React.Fragment>
 			) : (
 				<React.Fragment>
 					{getStepContent(activeStep)}
 					<Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-						{activeStep !== StepEnum.SHIPPING_ADDRESS && (
+						{activeStep !== StepEnum.USER_DETAILS && (
 							<Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-								Back
+								Retour
 							</Button>
 						)}
 						<Button
@@ -93,9 +110,9 @@ export default function AddCustomer() {
 							onClick={handleNext}
 							sx={{ mt: 3, ml: 1 }}
 						>
-							{activeStep === StepEnum.REVIEW - 1
-								? 'Place order'
-								: 'Next'}
+							{activeStep === StepEnum.PHONE_DETAILS
+								? 'Enregistrer le client'
+								: 'Suivant'}
 						</Button>
 					</Box>
 				</React.Fragment>
