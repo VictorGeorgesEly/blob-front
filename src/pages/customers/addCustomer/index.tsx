@@ -7,13 +7,24 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+type Props = {};
+
+type UserProps = {};
+
+type AddressProps = {};
+
+type PhoneProps = {};
+
+type ResumeProps = {};
+
 enum StepEnum {
 	USER_DETAILS,
 	ADDRESS_DETAILS,
 	PHONE_DETAILS,
+	RESUME_DETAILS,
 }
 
-const steps = [
+const steps: string[] = [
 	'Informations du client',
 	'Addresse du client',
 	'Téléphone du client',
@@ -27,24 +38,32 @@ function getStepContent(step: number): JSX.Element {
 			return <AddressForm />;
 		case StepEnum.PHONE_DETAILS:
 			return <PhoneForm />;
+		case StepEnum.RESUME_DETAILS:
+			return <ResumeForm />;
 		default:
 			throw new Error('Unknown step');
 	}
 }
 
-function UserForm(): JSX.Element {
+const UserForm: React.FC<UserProps> = (): JSX.Element => {
 	return <h1>Informations du client</h1>;
-}
+};
 
-function AddressForm(): JSX.Element {
+const AddressForm: React.FC<AddressProps> = (): JSX.Element => {
 	return <h1>Addresses du client</h1>;
-}
+};
 
-function PhoneForm(): JSX.Element {
+const PhoneForm: React.FC<PhoneProps> = (): JSX.Element => {
 	return <h1>Téléphones du client</h1>;
-}
+};
 
-export default function AddCustomer(): JSX.Element {
+const ResumeForm: React.FC<ResumeProps> = (): JSX.Element => {
+	return <h1>Résumé avant enregistrement du client</h1>;
+};
+
+const AddCustomer: React.FC<Props> = (): JSX.Element => {
+	// TODO Add Loading + Error
+
 	const [activeStep, setActiveStep] = React.useState<number>(
 		StepEnum.USER_DETAILS,
 	);
@@ -57,7 +76,7 @@ export default function AddCustomer(): JSX.Element {
 		setActiveStep((prevActiveStep: number) => prevActiveStep - 1);
 	};
 
-	const handReset = (): void => {
+	const handleSubmit = (): void => {
 		setActiveStep(StepEnum.USER_DETAILS);
 	};
 
@@ -76,47 +95,37 @@ export default function AddCustomer(): JSX.Element {
 					</Step>
 				))}
 			</Stepper>
-			{activeStep === steps.length ? (
-				<React.Fragment>
-					<Typography variant="h5" gutterBottom>
-						Thank you for your order.
-					</Typography>
-					<Typography variant="subtitle1">
-						Your order number is #2001539. We have emailed your
-						order confirmation, and will send you an update when
-						your order has shipped.
-					</Typography>
-					<Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-						<Button
-							variant="contained"
-							onClick={handReset}
-							sx={{ mt: 3, ml: 1 }}
-						>
-							Ok
+			<Box component="form">
+				{/* TODO */}
+				{getStepContent(activeStep)}
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'flex-end',
+					}}
+				>
+					{activeStep !== StepEnum.USER_DETAILS && (
+						<Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+							Retour
 						</Button>
-					</Box>
-				</React.Fragment>
-			) : (
-				<React.Fragment>
-					{getStepContent(activeStep)}
-					<Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-						{activeStep !== StepEnum.USER_DETAILS && (
-							<Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-								Retour
-							</Button>
-						)}
-						<Button
-							variant="contained"
-							onClick={handleNext}
-							sx={{ mt: 3, ml: 1 }}
-						>
-							{activeStep === StepEnum.PHONE_DETAILS
-								? 'Enregistrer le client'
-								: 'Suivant'}
-						</Button>
-					</Box>
-				</React.Fragment>
-			)}
+					)}
+					<Button
+						variant="contained"
+						onClick={
+							activeStep === StepEnum.RESUME_DETAILS
+								? handleSubmit
+								: handleNext
+						}
+						sx={{ mt: 3, ml: 1 }}
+					>
+						{activeStep === StepEnum.RESUME_DETAILS
+							? 'Enregistrer le client'
+							: 'Suivant'}
+					</Button>
+				</Box>
+			</Box>
 		</Paper>
 	);
-}
+};
+
+export default AddCustomer;

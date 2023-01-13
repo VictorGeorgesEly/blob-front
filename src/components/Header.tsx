@@ -198,26 +198,20 @@ function Header(): JSX.Element {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting) => {
-								let onClick: () => void;
-								if (setting.id === 3) {
-									onClick = handleLogout;
-								} else {
-									onClick = handleCloseUserMenu;
-								}
-								return (
-									<MenuItem
-										key={setting.id}
-										onClick={onClick}
-										component={Link}
-										to={setting.href}
-									>
-										<Typography textAlign="center">
-											{setting.text}
-										</Typography>
-									</MenuItem>
-								);
-							})}
+							{settings.map((setting) => (
+								<MenuItem
+									key={setting.id}
+									onClick={
+										setting.id === 3
+											? handleLogout
+											: handleCloseUserMenu
+									}
+									component={Link}
+									to={setting.href}
+								>
+									<Typography>{setting.text}</Typography>
+								</MenuItem>
+							))}
 						</Menu>
 					</Box>
 				</Toolbar>

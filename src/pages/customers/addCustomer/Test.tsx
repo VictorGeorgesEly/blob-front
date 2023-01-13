@@ -13,19 +13,21 @@ interface Phone {
 	phone: number;
 }
 
-interface FormState {
+interface FormData {
 	firstName: string;
 	addresses: Address[];
 	phones: Phone[];
 }
 
-const Test: React.FC<Props> = () => {
-	const initialFormState: FormState = {
+const Test: React.FC<Props> = (): JSX.Element => {
+	// TODO Add Loading + Error
+
+	const initialFormState: FormData = {
 		firstName: '',
 		addresses: [{ street: '', city: '', state: '', zip: '' }],
 		phones: [{ phone: 0 }],
 	};
-	const [formState, setFormState] = useState<FormState>(initialFormState);
+	const [formState, setFormState] = useState<FormData>(initialFormState);
 
 	const handleChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +69,9 @@ const Test: React.FC<Props> = () => {
 
 	const removeAddress = useCallback(
 		(index: number) => () => {
-			if (index === 0) return;
+			if (index === 0) {
+				return;
+			}
 			const newAddresses = [...formState.addresses];
 			newAddresses.splice(index, 1);
 			setFormState((prevState) => ({
@@ -80,9 +84,6 @@ const Test: React.FC<Props> = () => {
 
 	const handlePhoneChange = useCallback(
 		(index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-			if (index === 0) {
-				return;
-			}
 			const newPhones = [...formState.phones];
 			newPhones[index] = {
 				...newPhones[index],
@@ -139,6 +140,8 @@ const Test: React.FC<Props> = () => {
 		}
 	};
 
+	// TODO const isValid + Const check + Add new React.FC
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<label>
@@ -152,54 +155,13 @@ const Test: React.FC<Props> = () => {
 			</label>
 			<br />
 			{formState.addresses.map((address, index) => (
-				<div key={index}>
-					<label>
-						Rue:
-						<input
-							type="text"
-							name="street"
-							value={address.street}
-							onChange={handleAddressChange(index)}
-						/>
-					</label>
-					<br />
-					<label>
-						Ville:
-						<input
-							type="text"
-							name="city"
-							value={address.city}
-							onChange={handleAddressChange(index)}
-						/>
-					</label>
-					<br />
-					<label>
-						Etat:
-						<input
-							type="text"
-							name="state"
-							value={address.state}
-							onChange={handleAddressChange(index)}
-						/>
-					</label>
-					<br />
-					<label>
-						Code postal:
-						<input
-							type="text"
-							name="zip"
-							value={address.zip}
-							onChange={handleAddressChange(index)}
-						/>
-					</label>
-					<br />
-					{index !== 0 && (
-						<button type="button" onClick={removeAddress(index)}>
-							Supprimer cette adresse
-						</button>
-					)}
-					<br />
-				</div>
+				<AddressFields
+					key={index}
+					index={index}
+					address={address}
+					onChange={handleAddressChange}
+					onRemove={removeAddress}
+				/>
 			))}
 			<br />
 			{Object.values(
@@ -240,3 +202,70 @@ const Test: React.FC<Props> = () => {
 };
 
 export default Test;
+
+interface AddressFieldsProps {
+	index: number;
+	address: Address;
+	onChange: (
+		index: number,
+	) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onRemove: (index: number) => () => void;
+}
+
+const AddressFields: React.FC<AddressFieldsProps> = ({
+	index,
+	address,
+	onChange,
+	onRemove,
+}) => {
+	return (
+		<div key={index}>
+			<label>
+				Rue:
+				<input
+					type="text"
+					name="street"
+					value={address.street}
+					onChange={onChange(index)}
+				/>
+			</label>
+			<br />
+			<label>
+				Ville:
+				<input
+					type="text"
+					name="city"
+					value={address.city}
+					onChange={onChange(index)}
+				/>
+			</label>
+			<br />
+			<label>
+				Etat:
+				<input
+					type="text"
+					name="state"
+					value={address.state}
+					onChange={onChange(index)}
+				/>
+			</label>
+			<br />
+			<label>
+				Code postal:
+				<input
+					type="text"
+					name="zip"
+					value={address.zip}
+					onChange={onChange(index)}
+				/>
+			</label>
+			<br />
+			{index !== 0 && (
+				<button type="button" onClick={onRemove(index)}>
+					Supprimer cette adresse
+				</button>
+			)}
+			<br />
+		</div>
+	);
+};

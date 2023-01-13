@@ -17,3 +17,9 @@ export async function getCustomerById(id: string): Promise<CustomerData> {
 	});
 	return record;
 }
+
+export async function createCustomer(data: any) {
+	// TODO Change Any
+	const record = await pb.collection('customers').create(data);
+	return record;
+}
