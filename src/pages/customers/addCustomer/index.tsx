@@ -6,6 +6,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { CustomerData } from '../../../data/customers/type';
 
 type Props = {};
 
@@ -74,6 +75,22 @@ const AddCustomer: React.FC<Props> = (): JSX.Element => {
 
 	const handleBack = (): void => {
 		setActiveStep((prevActiveStep: number) => prevActiveStep - 1);
+	};
+
+	const initialFormState: CustomerData = {
+		id: '',
+		username: '',
+		first_name: '',
+		last_name: '',
+		email: '',
+		addedBy: '',
+		social_security: 0,
+		emailVisibility: false,
+		verified: false,
+		collectionID: '',
+		collectionName: '',
+		created: new Date(),
+		updated: new Date(),
 	};
 
 	const handleSubmit = (): void => {
