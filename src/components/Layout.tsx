@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import Appointments from '../pages/appointments';
 import Customers from '../pages/customers';
 import AddCustomer from '../pages/customers/addCustomer';
-import Test from '../pages/customers/addCustomer/Test';
 import CustomerDetail from '../pages/customers/customer';
 import Files from '../pages/files';
 import AddFile from '../pages/files/addFile';
@@ -38,7 +37,6 @@ export default function Layout(): JSX.Element {
 					<Route path="/invoices" element={<Invoices />} />
 					<Route path="/profile" element={<Profile />} />
 					<Route path="*" element={<NotFound />} />
-					<Route path="/test" element={<Test />} />
 				</Routes>
 			</Container>
 			<Footer />

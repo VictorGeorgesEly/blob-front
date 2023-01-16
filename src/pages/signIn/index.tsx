@@ -114,6 +114,7 @@ function SignIn(): JSX.Element {
 							id="identity"
 							label="Email Address"
 							name="identity"
+							type="text"
 							autoComplete="identity"
 							autoFocus
 							value={formData.identity}

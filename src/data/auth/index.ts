@@ -25,3 +25,7 @@ export const logout = () => {
 export const isLoggedIn = () => {
 	return !!pb.authStore.token;
 };
+
+export const getId = (): string => {
+	return pb.authStore.model!.id; // TODO
+};
