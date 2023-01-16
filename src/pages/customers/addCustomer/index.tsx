@@ -175,7 +175,7 @@ const UserForm: React.FC<UserProps> = (props: UserProps): JSX.Element => {
 						id="email"
 						label="Mail"
 						name="email"
-						type="text"
+						type="email"
 						autoComplete="email"
 						variant="standard"
 						value={props.customer.email}
@@ -189,7 +189,7 @@ const UserForm: React.FC<UserProps> = (props: UserProps): JSX.Element => {
 						id="social_security"
 						label="Numéro de sécurité social"
 						name="social_security"
-						type="text"
+						type="number"
 						autoComplete="social_security"
 						variant="standard"
 						value={props.customer.social_security}
@@ -219,7 +219,7 @@ const AddressForm: React.FC<AddressProps> = (
 								id="number"
 								label="Numéro de rue"
 								name="number"
-								type="text"
+								type="number"
 								autoComplete="number"
 								autoFocus
 								variant="standard"
@@ -276,7 +276,7 @@ const AddressForm: React.FC<AddressProps> = (
 								id="post_code"
 								label="Code postal"
 								name="post_code"
-								type="text"
+								type="number"
 								autoComplete="post_code"
 								variant="standard"
 								value={address.post_code}
@@ -371,7 +371,7 @@ const PhoneForm: React.FC<PhoneProps> = (props: PhoneProps): JSX.Element => {
 							id="call_sign"
 							label="Indicatif"
 							name="call_sign"
-							type="text"
+							type="number"
 							autoComplete="call_sign"
 							autoFocus
 							variant="standard"
@@ -386,7 +386,7 @@ const PhoneForm: React.FC<PhoneProps> = (props: PhoneProps): JSX.Element => {
 							id="phone_number"
 							label="Numéro de téléphone"
 							name="phone_number"
-							type="text"
+							type="number"
 							autoComplete="phone_number"
 							variant="standard"
 							value={phone.phone_number}
@@ -438,16 +438,16 @@ const ResumeForm: React.FC<ResumeProps> = (props: ResumeProps): JSX.Element => {
 const AddCustomer: React.FC<Props> = (): JSX.Element => {
 	// TODO Add Loading + Error
 
-	const [activeStep, setActiveStep] = React.useState<number>(
+	const [activeStep, setActiveStep] = React.useState<StepEnum>(
 		StepEnum.USER_DETAILS,
 	);
 
 	const handleNext = (): void => {
-		setActiveStep((prevActiveStep: number) => prevActiveStep + 1);
+		setActiveStep((prevActiveStep: StepEnum) => prevActiveStep + 1);
 	};
 
 	const handleBack = (): void => {
-		setActiveStep((prevActiveStep: number) => prevActiveStep - 1);
+		setActiveStep((prevActiveStep: StepEnum) => prevActiveStep - 1);
 	};
 
 	const initialFormState: CustomerForm = {
@@ -479,6 +479,8 @@ const AddCustomer: React.FC<Props> = (): JSX.Element => {
 
 	const [customerForm, setCustomerForm] =
 		React.useState<CustomerForm>(initialFormState);
+
+	const [error, setError] = React.useState<string | null>(null);
 
 	const handleChange = React.useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>): void => {
