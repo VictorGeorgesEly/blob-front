@@ -7,45 +7,21 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { getId } from '../../../data/auth';
-import { Grid, TextField } from '@mui/material';
+import UserForm from './form/userForm';
+import AddressForm from './form/addressForm';
+import PhoneForm from './form/phoneForm';
+import ResumeForm from './form/resumeForm';
 
 type Props = {};
 
-type UserProps = {
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	customer: CustomerForm;
-};
-
-type AddressProps = {
-	addAddress: () => void;
-	onChange: (
-		index: number,
-	) => (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onRemove: (index: number) => () => void;
-	customer: CustomerForm;
-};
-
-type PhoneProps = {
-	addPhone: () => void;
-	onChange: (
-		index: number,
-	) => (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onRemove: (index: number) => () => void;
-	customer: CustomerForm;
-};
-
-type ResumeProps = {
-	customer: CustomerForm;
-};
-
-type CustomerForm = {
+export type CustomerForm = {
 	addedBy: string;
 	email: string;
 	expand: ExpandForm;
 	first_name: string;
 	last_name: string;
 	username: string;
-	social_security: number;
+	social_security: string;
 };
 
 type ExpandForm = {
@@ -59,15 +35,15 @@ type AddressesForm = {
 	additional: string;
 	city: string;
 	country: string;
-	number: number;
-	post_code: number;
+	number: string;
+	post_code: string;
 	repetition_index: string;
 	street: string;
 };
 
 type PhonesForm = {
-	call_sign: number;
-	phone_number: number;
+	call_sign: string;
+	phone_number: string;
 };
 
 type RolesForm = {
@@ -132,309 +108,6 @@ function getStepContent(
 	}
 }
 
-const UserForm: React.FC<UserProps> = (props: UserProps): JSX.Element => {
-	return (
-		<>
-			<Typography variant="h6" gutterBottom>
-				Informations du client
-			</Typography>
-			<Grid container spacing={4}>
-				<Grid item xs={12} sm={6}>
-					<TextField
-						required
-						fullWidth
-						id="first_name"
-						label="Prénom"
-						name="first_name"
-						type="text"
-						autoComplete="first_name"
-						autoFocus
-						variant="standard"
-						value={props.customer.first_name}
-						onChange={props.onChange}
-					/>
-				</Grid>
-				<Grid item xs={12} sm={6}>
-					<TextField
-						required
-						fullWidth
-						id="last_name"
-						label="Nom"
-						name="last_name"
-						type="text"
-						autoComplete="last_name"
-						variant="standard"
-						value={props.customer.last_name}
-						onChange={props.onChange}
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<TextField
-						required
-						fullWidth
-						id="email"
-						label="Mail"
-						name="email"
-						type="email"
-						autoComplete="email"
-						variant="standard"
-						value={props.customer.email}
-						onChange={props.onChange}
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<TextField
-						required
-						fullWidth
-						id="social_security"
-						label="Numéro de sécurité social"
-						name="social_security"
-						type="number"
-						autoComplete="social_security"
-						variant="standard"
-						value={props.customer.social_security}
-						onChange={props.onChange}
-					/>
-				</Grid>
-			</Grid>
-		</>
-	);
-};
-
-const AddressForm: React.FC<AddressProps> = (
-	props: AddressProps,
-): JSX.Element => {
-	return (
-		<>
-			<Typography variant="h6" gutterBottom>
-				Adresses du client
-			</Typography>
-			{props.customer.expand['addresses(customer)'].map(
-				(address, index) => (
-					<Grid container spacing={4} key={index}>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								fullWidth
-								id="number"
-								label="Numéro de rue"
-								name="number"
-								type="number"
-								autoComplete="number"
-								autoFocus
-								variant="standard"
-								value={address.number}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								fullWidth
-								id="street"
-								label="Nom de la rue"
-								name="street"
-								type="text"
-								autoComplete="street"
-								variant="standard"
-								value={address.street}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								required
-								fullWidth
-								id="city"
-								label="Ville"
-								name="city"
-								type="text"
-								autoComplete="city"
-								variant="standard"
-								value={address.city}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								required
-								fullWidth
-								id="country"
-								label="Pays"
-								name="country"
-								type="text"
-								autoComplete="country"
-								variant="standard"
-								value={address.country}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								fullWidth
-								id="post_code"
-								label="Code postal"
-								name="post_code"
-								type="number"
-								autoComplete="post_code"
-								variant="standard"
-								value={address.post_code}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								fullWidth
-								id="access_code"
-								label="Code d'accès"
-								name="access_code"
-								type="text"
-								autoComplete="access_code"
-								variant="standard"
-								value={address.access_code}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								fullWidth
-								id="additional"
-								label="Additionnel"
-								name="additional"
-								type="text"
-								autoComplete="additional"
-								variant="standard"
-								value={address.additional}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								fullWidth
-								id="repetition_index"
-								label="Répétition (bis, ter...)"
-								name="repetition_index"
-								type="text"
-								autoComplete="repetition_index"
-								variant="standard"
-								value={address.repetition_index}
-								onChange={props.onChange(index)}
-							/>
-						</Grid>
-						{index !== 0 && (
-							<button
-								type="button"
-								onClick={props.onRemove(index)}
-							>
-								Supprimer cette adresse
-							</button>
-						)}
-					</Grid>
-				),
-			)}
-			{props.customer.expand['addresses(customer)'][
-				props.customer.expand['addresses(customer)'].length - 1
-			].street &&
-				props.customer.expand['addresses(customer)'][
-					props.customer.expand['addresses(customer)'].length - 1
-				].city &&
-				props.customer.expand['addresses(customer)'][
-					props.customer.expand['addresses(customer)'].length - 1
-				].number &&
-				props.customer.expand['addresses(customer)'][
-					props.customer.expand['addresses(customer)'].length - 1
-				].country && (
-					<button type="button" onClick={props.addAddress}>
-						Aiouter une adresse
-					</button>
-				)}
-		</>
-	);
-};
-
-const PhoneForm: React.FC<PhoneProps> = (props: PhoneProps): JSX.Element => {
-	return (
-		<>
-			<Typography variant="h6" gutterBottom>
-				Téléphones du client
-			</Typography>
-			{props.customer.expand['phones(customer)'].map((phone, index) => (
-				<Grid container spacing={4} key={index}>
-					<Grid item xs={12} sm={6}>
-						<TextField
-							required
-							fullWidth
-							id="call_sign"
-							label="Indicatif"
-							name="call_sign"
-							type="number"
-							autoComplete="call_sign"
-							autoFocus
-							variant="standard"
-							value={phone.call_sign}
-							onChange={props.onChange(index)}
-						/>
-					</Grid>
-					<Grid item xs={12} sm={6}>
-						<TextField
-							required
-							fullWidth
-							id="phone_number"
-							label="Numéro de téléphone"
-							name="phone_number"
-							type="number"
-							autoComplete="phone_number"
-							variant="standard"
-							value={phone.phone_number}
-							onChange={props.onChange(index)}
-						/>
-					</Grid>
-					{index !== 0 && (
-						<button type="button" onClick={props.onRemove(index)}>
-							Supprimer ce téléphone
-						</button>
-					)}
-				</Grid>
-			))}
-			{!!props.customer.expand['phones(customer)'][
-				props.customer.expand['phones(customer)'].length - 1
-			].phone_number && (
-				<button type="button" onClick={props.addPhone}>
-					Ajouter un téléphone
-				</button>
-			)}
-		</>
-	);
-};
-
-const ResumeForm: React.FC<ResumeProps> = (props: ResumeProps): JSX.Element => {
-	return (
-		<>
-			<Typography variant="h6" gutterBottom>
-				Résumé du client
-			</Typography>
-			<Grid container spacing={4}>
-				<Grid item xs={12} sm={6}>
-					<p>{props.customer.first_name}</p>
-				</Grid>
-				<Grid item xs={12} sm={6}>
-					<p>{props.customer.last_name}</p>
-				</Grid>
-				<Grid item xs={12}>
-					<p>{props.customer.email}</p>
-				</Grid>
-				<Grid item xs={12}>
-					<p>{props.customer.social_security}</p>
-				</Grid>
-			</Grid>
-		</>
-	);
-};
-
 const AddCustomer: React.FC<Props> = (): JSX.Element => {
 	// TODO Add Loading + Error
 
@@ -460,13 +133,13 @@ const AddCustomer: React.FC<Props> = (): JSX.Element => {
 					additional: '',
 					city: '',
 					country: '',
-					number: 0,
-					post_code: 0,
+					number: '',
+					post_code: '',
 					repetition_index: '',
 					street: '',
 				},
 			],
-			'phones(customer)': [{ call_sign: 0, phone_number: 0 }],
+			'phones(customer)': [{ call_sign: '', phone_number: '' }],
 			'roles(customer)': {
 				role: [],
 			},
@@ -474,7 +147,7 @@ const AddCustomer: React.FC<Props> = (): JSX.Element => {
 		first_name: '',
 		last_name: '',
 		username: '',
-		social_security: 0,
+		social_security: '',
 	};
 
 	const [customerForm, setCustomerForm] =
@@ -537,8 +210,8 @@ const AddCustomer: React.FC<Props> = (): JSX.Element => {
 							additional: '',
 							city: '',
 							country: '',
-							number: 0,
-							post_code: 0,
+							number: '',
+							post_code: '',
 							repetition_index: '',
 							street: '',
 						},
@@ -591,7 +264,7 @@ const AddCustomer: React.FC<Props> = (): JSX.Element => {
 		const isValid =
 			customerForm.expand['phones(customer)'][
 				customerForm.expand['phones(customer)'].length - 1
-			].phone_number !== 0;
+			].phone_number;
 		if (isValid) {
 			setCustomerForm((prevState) => ({
 				...prevState,
@@ -599,7 +272,7 @@ const AddCustomer: React.FC<Props> = (): JSX.Element => {
 					...prevState.expand,
 					'phones(customer)': [
 						...prevState.expand['phones(customer)'],
-						{ call_sign: 0, phone_number: 0 },
+						{ call_sign: '', phone_number: '' },
 					],
 				},
 			}));

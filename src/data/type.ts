@@ -20,8 +20,8 @@ type Addresses = {
 	city: string;
 	country: string;
 	customer: string;
-	number: number;
-	post_code: number;
+	number: string;
+	post_code: string;
 	repetition_index: string;
 	street: string;
 	user: string;
@@ -30,9 +30,9 @@ type Addresses = {
 export type AddressesData = Addresses & Universal;
 
 type Phones = {
-	call_sign: number;
+	call_sign: string;
 	customer: string;
-	phone_number: number;
+	phone_number: string;
 	user: string;
 };
 
